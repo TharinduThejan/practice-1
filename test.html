@@ -1,5 +1,419 @@
-<html>
-    <body>
-        <h1>test</h1>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beautiful Portfolio Page</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        position: relative;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>')
+          repeat;
+        animation: float 20s infinite linear;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px) translateX(0px);
+        }
+        50% {
+          transform: translateY(-20px) translateX(10px);
+        }
+        100% {
+          transform: translateY(0px) translateX(0px);
+        }
+      }
+
+      .hero-content {
+        z-index: 1;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        font-weight: 300;
+        letter-spacing: 2px;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 12px 30px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        text-decoration: none;
+        border-radius: 30px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+        font-weight: 500;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+      }
+
+      .cta-button:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Features Section */
+      .features {
+        padding: 80px 20px;
+        background: #f8f9fa;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #333;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        border-radius: 2px;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 4rem;
+      }
+
+      .feature-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .feature-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 1.5rem;
+        color: white;
+      }
+
+      .feature-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        color: #333;
+      }
+
+      .feature-card p {
+        color: #666;
+        line-height: 1.6;
+      }
+
+      /* Stats Section */
+      .stats {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 60px 20px;
+        color: white;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        text-align: center;
+      }
+
+      .stat-item h3 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-item p {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+
+      /* Footer */
+      .footer {
+        background: #2c3e50;
+        color: white;
+        padding: 40px 20px;
+        text-align: center;
+      }
+
+      .social-links {
+        margin: 20px 0;
+      }
+
+      .social-links a {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        text-decoration: none;
+        border-radius: 50%;
+        line-height: 40px;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+
+      .social-links a:hover {
+        background: #667eea;
+        transform: translateY(-2px);
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Scroll Animation */
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .animate-on-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Welcome to Beautiful Design</h1>
+        <p>Creating amazing experiences with modern web technologies</p>
+        <a href="#features" class="cta-button">Explore More</a>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">Amazing Features</h2>
+        <div class="features-grid">
+          <div class="feature-card animate-on-scroll">
+            <div class="feature-icon">🚀</div>
+            <h3>Fast Performance</h3>
+            <p>
+              Optimized for speed and performance with modern web technologies
+              and best practices.
+            </p>
+          </div>
+          <div class="feature-card animate-on-scroll">
+            <div class="feature-icon">📱</div>
+            <h3>Responsive Design</h3>
+            <p>
+              Looks perfect on all devices - from mobile phones to large desktop
+              screens.
+            </p>
+          </div>
+          <div class="feature-card animate-on-scroll">
+            <div class="feature-icon">🎨</div>
+            <h3>Beautiful UI</h3>
+            <p>
+              Carefully crafted user interface with attention to detail and user
+              experience.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item animate-on-scroll">
+            <h3>1000+</h3>
+            <p>Happy Customers</p>
+          </div>
+          <div class="stat-item animate-on-scroll">
+            <h3>50+</h3>
+            <p>Projects Completed</p>
+          </div>
+          <div class="stat-item animate-on-scroll">
+            <h3>24/7</h3>
+            <p>Support Available</p>
+          </div>
+          <div class="stat-item animate-on-scroll">
+            <h3>99%</h3>
+            <p>Satisfaction Rate</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <h3>Stay Connected</h3>
+        <div class="social-links">
+          <a href="#">📘</a>
+          <a href="#">🐦</a>
+          <a href="#">📸</a>
+          <a href="#">💼</a>
+        </div>
+        <p>&copy; 2025 Beautiful Design. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Scroll animation
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".animate-on-scroll").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Add some interactive particles
+      function createParticle() {
+        const particle = document.createElement("div");
+        particle.style.position = "fixed";
+        particle.style.width = "4px";
+        particle.style.height = "4px";
+        particle.style.background = "rgba(255, 255, 255, 0.5)";
+        particle.style.borderRadius = "50%";
+        particle.style.pointerEvents = "none";
+        particle.style.zIndex = "1000";
+        particle.style.left = Math.random() * window.innerWidth + "px";
+        particle.style.top = "100vh";
+        particle.style.animation = "floatUp 3s linear forwards";
+
+        document.body.appendChild(particle);
+
+        setTimeout(() => {
+          particle.remove();
+        }, 3000);
+      }
+
+      // Add CSS for particle animation
+      const style = document.createElement("style");
+      style.textContent = `
+            @keyframes floatUp {
+                to {
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+      document.head.appendChild(style);
+
+      // Create particles periodically
+      setInterval(createParticle, 300);
+
+      console.log("Beautiful page loaded successfully! ✨");
+    </script>
+  </body>
 </html>
